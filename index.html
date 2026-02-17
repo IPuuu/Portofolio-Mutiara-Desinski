@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +17,21 @@
         /* --- CSS VARIABLES & RESET --- */
         :root {
             --primary-color: #541e29; /* Burgundy / Maroon Theme */
-            --accent-color: #541e29;  /* Same color for consistency */
+            --accent-color: #7a2a38;  /* Lighter Maroon for hover */
             --bg-light: #fcf8f8;      /* Light Beige/Grey Background */
             --bg-white: #ffffff;      /* White Background */
             --text-dark: #1e293b;     /* Dark Gray for Headings */
             --text-gray: #475569;     /* Medium Gray for Body */
             --text-light: #94a3b8;    /* Light Gray for metadata */
             --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(84, 30, 41, 0.08), 0 2px 4px -1px rgba(84, 30, 41, 0.04);
-            --shadow-hover: 0 10px 15px -3px rgba(84, 30, 41, 0.12), 0 4px 6px -2px rgba(84, 30, 41, 0.06);
+            --shadow: 0 4px 6px -1px rgba(84, 30, 41, 0.1), 0 2px 4px -1px rgba(84, 30, 41, 0.06);
+            --shadow-hover: 0 20px 25px -5px rgba(84, 30, 41, 0.15), 0 10px 10px -5px rgba(84, 30, 41, 0.08);
             --container-width: 1100px;
         }
 
         * {
             margin: 0;
             padding: 0;
-            box-spacing: border-box; /* Fix typo: box-sizing */
             box-sizing: border-box;
         }
 
@@ -45,6 +44,7 @@
             color: var(--text-gray);
             line-height: 1.6;
             background-color: var(--bg-light);
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -56,7 +56,7 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         ul {
@@ -73,22 +73,26 @@
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding:5 40px;
+            padding: 1 40px;
         }
 
-        /* Refined Spacing */
         section {
-            padding: 4rem 0; /* Reduced from 5rem for tighter look */
+            padding: 5rem 0;
         }
 
         .section-title {
             text-align: center;
             font-size: 2rem;
-            margin-bottom: 2.5rem; /* Reduced from 3rem */
+            margin-bottom: 3rem;
             position: relative;
             color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .section-title:hover {
+            color: var(--accent-color);
         }
 
         .section-title::after {
@@ -99,6 +103,11 @@
             background-color: var(--accent-color);
             margin: 10px auto 0;
             border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100px;
         }
 
         .bg-white {
@@ -113,7 +122,12 @@
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow);
-            padding: 0.8rem 0; /* Slightly reduced padding */
+            padding: 0.8rem 0;
+            transition: padding 0.3s ease;
+        }
+
+        header:hover {
+            padding: 1rem 0;
         }
 
         nav {
@@ -127,21 +141,42 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem; /* Adjusted gap */
+            gap: 1.5rem;
         }
 
         .nav-links a {
             font-weight: 500;
             color: var(--text-dark);
             font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Mobile Menu Toggle */
@@ -158,7 +193,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 4rem;
-            min-height: 85vh; /* Adjusted height */
+            min-height: 85vh;
             padding-top: 2rem;
         }
 
@@ -176,16 +211,22 @@
         }
 
         .hero-text h1 {
-            font-size: 3.2rem; /* Adjusted size */
-            line-height: 1.2;
+            font-size: 3.5rem;
+            line-height: 1.1;
             margin-bottom: 1.2rem;
             color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-text h1:hover {
+            transform: translateX(10px);
         }
 
         .hero-text p {
             margin-bottom: 0.8rem;
-            font-size: 1rem;
+            font-size: 1.05rem;
             text-align: justify;
+            color: var(--text-gray);
         }
 
         .hero-image {
@@ -196,11 +237,16 @@
         }
 
         .hero-image img {
-            width: 350px;
-            height: 450px;
+            width: 380px;
+            height: 480px;
             border-radius: 20px;
-            box-shadow: 20px 20px 0 var(--accent-color); 
-            margin: 0 auto;
+            box-shadow: 20px 20px 0 var(--accent-color);
+            transition: all 0.4s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02) rotate(-1deg);
+            box-shadow: 25px 25px 0 var(--primary-color);
         }
 
         /* --- 2. EDUCATION SECTION --- */
@@ -216,12 +262,15 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .edu-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
+            border-left-color: var(--accent-color);
         }
 
         .edu-year {
@@ -233,7 +282,7 @@
         }
 
         .edu-school {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--primary-color);
         }
@@ -241,22 +290,29 @@
         .edu-desc {
             font-size: 0.95rem;
             margin-bottom: 1rem;
+            color: var(--text-gray);
         }
 
         .edu-highlight {
-            background-color: #fce7e9; /* Light pinkish for burgundy theme */
+            background-color: #fce7e9;
             color: var(--primary-color);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .edu-card:hover .edu-highlight {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         /* --- 3. ACHIEVEMENTS SECTION --- */
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
@@ -271,12 +327,25 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-color);
         }
 
         .achievement-icon {
             font-size: 2rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover .achievement-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--accent-color);
         }
 
         .achievement-text {
@@ -285,7 +354,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- NEW: CERTIFICATES SECTION --- */
+        /* --- 3.5 CERTIFICATES SECTION --- */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,8 +366,26 @@
             padding: 1rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(84, 30, 41, 0.05);
+            transition: height 0.3s ease;
+            z-index: 1;
+        }
+
+        .cert-card:hover::before {
+            height: 100%;
         }
 
         .cert-card:hover {
@@ -316,18 +403,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 2;
         }
         
         .cert-img-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Or 'contain' depending on preference */
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover .cert-img-container img {
+            transform: scale(1.1);
+        }
+
+        .cert-info {
+            position: relative;
+            z-index: 2;
         }
 
         .cert-info h4 {
             font-size: 1rem;
             color: var(--primary-color);
             margin-bottom: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .cert-card:hover .cert-info h4 {
+            color: var(--accent-color);
         }
 
         .cert-info p {
@@ -335,7 +439,7 @@
             color: var(--text-light);
         }
 
-        /* --- 4. WORK EXPERIENCE SECTION (UPDATED) --- */
+        /* --- 4. WORK EXPERIENCE SECTION --- */
         .experience-container {
             display: flex;
             flex-direction: column;
@@ -351,6 +455,14 @@
             grid-template-columns: 1fr 2fr;
             gap: 2rem;
             align-items: flex-start;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .exp-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+            border-left: 4px solid var(--primary-color);
         }
 
         .exp-header h4 {
@@ -389,6 +501,11 @@
             margin-bottom: 1rem;
             border: 1px solid #ddd;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .exp-card:hover .exp-proof-img {
+            transform: scale(1.02);
         }
 
         .exp-content ul {
@@ -401,6 +518,11 @@
             margin-bottom: 0.4rem;
             color: var(--text-gray);
             font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .exp-content li:hover {
+            color: var(--primary-color);
         }
 
         /* --- 5. DOCUMENTATION SECTION --- */
@@ -415,29 +537,38 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            group: doc;
+            height: 250px;
+            cursor: pointer;
         }
 
         .doc-item img {
             width: 100%;
-            height: 250px;
-            transition: transform 0.5s ease;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .doc-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .doc-caption {
             position: absolute;
-            bottom: 0;
+            bottom: 1px;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(84, 30, 41, 0.9)); /* Maroon gradient */
+            background: linear-gradient(transparent, rgba(84, 30, 41, 0.95));
             color: white;
             padding: 1rem;
             font-size: 0.9rem;
             font-weight: 500;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .doc-item:hover .doc-caption {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         /* --- 6. PERSONAL SKILLS SECTION --- */
@@ -454,18 +585,25 @@
             box-shadow: var(--shadow);
             text-align: center;
             transition: all 0.3s ease;
-            border-top: 4px solid transparent;
+            border: 1px solid transparent;
         }
 
         .skill-card:hover {
-            border-top: 4px solid var(--accent-color);
-            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .skill-icon {
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            color: var(--accent-color);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .skill-title {
@@ -492,6 +630,12 @@
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .project-img {
@@ -501,11 +645,17 @@
             align-items: center;
             justify-content: center;
             color: var(--text-light);
+            overflow: hidden;
         }
         
         .project-img img {
             width: 100%;
             height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
         }
 
         .project-info {
@@ -527,11 +677,13 @@
         .project-info h4 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .project-info p {
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            color: var(--text-gray);
         }
 
         /* --- 8. TASKS I HANDLE SECTION --- */
@@ -547,19 +699,27 @@
             padding: 1.5rem;
             border-radius: var(--border-radius);
             display: flex;
-            align-items: flex-start; /* Changed to flex-start for longer text */
+            align-items: flex-start;
             gap: 1rem;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
         .task-card:hover {
-            background: #3a141c; /* Darker maroon */
+            background: #3a141c;
+            transform: scale(1.05);
         }
 
         .task-icon {
             font-size: 1.3rem;
-            color: #ffcbd1; /* Light pinkish for icon */
+            color: #ffcbd1;
             margin-top: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .task-card:hover .task-icon {
+            transform: rotate(15deg) scale(1.2);
+            color: white;
         }
 
         .task-text {
@@ -571,12 +731,18 @@
         /* --- 9. CONTACT SECTION --- */
         .contact-container {
             background: var(--bg-white);
-            padding: 3rem 2rem; /* Adjusted padding */
+            padding: 3rem 2rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .contact-details {
@@ -591,11 +757,24 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background-color: #f8f9fa;
         }
 
         .contact-item i {
             font-size: 1.5rem;
             color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2);
+            color: var(--accent-color);
         }
 
         .contact-item span {
@@ -606,6 +785,20 @@
         .contact-item a {
             font-weight: 600;
             color: var(--text-dark);
+            position: relative;
+        }
+
+        .contact-item a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .contact-item:hover a::after {
+            width: 100%;
         }
         
         .contact-item a:hover {
@@ -616,7 +809,7 @@
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 0.8rem 2.5rem; /* Adjusted padding */
+            padding: 0.8rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
@@ -624,12 +817,13 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(84, 30, 41, 0.3);
         }
 
         .btn-contact:hover {
-            background-color: #7a2a38; /* Slightly lighter maroon */
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(84, 30, 41, 0.3);
+            background-color: var(--accent-color);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 15px rgba(84, 30, 41, 0.4);
         }
 
         footer {
@@ -638,7 +832,7 @@
             color: var(--text-light);
             font-size: 0.85rem;
             border-top: 1px solid #e2e8f0;
-            margin-top: 2rem; /* Reduced margin */
+            margin-top: 2rem;
         }
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
@@ -674,11 +868,17 @@
             .hero-text h1 {
                 font-size: 2.2rem;
             }
+            .hero-text h1:hover {
+                transform: none;
+            }
 
             .hero-image img {
                 width: 250px;
                 height: 320px;
                 box-shadow: 10px 10px 0 var(--accent-color);
+            }
+            .hero-image:hover img {
+                box-shadow: 10px 10px 0 var(--primary-color);
             }
 
             .exp-card {
@@ -707,6 +907,7 @@
                     <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#certificates">Certificates</a></li>
                     <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Portfolio</a></li> <!-- NEW LINK -->
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -721,10 +922,10 @@
                 <h3>Fresh Graduate & Office Professional</h3>
                 <h1>Mutiara Desinski</h1>
                 <p>
-                    Halo, nama saya Mutiara Desinski. Saya adalah seorang Fresh Graduate berusia 20 tahun yang lahir di Sumatra Barat. Saat ini, saya merupakan salah satu penerima beasiswa penuh (100%) di Universitas Telkom, lulusan dengan predikat Cumlaude. Saya adalah pribadi yang tidak cepat merasa puas, memiliki rasa ingin tahu yang tinggi, serta berani keluar dari zona nyaman untuk mencoba hal baru.
+                    Hello, my name is Mutiara Desinski. I am a 20-year-old Fresh Graduate born in West Sumatra. Currently, I am a full scholarship (100%) recipient at Telkom University, graduating with Cumlaude honors. I am a person who is never easily satisfied, possesses high curiosity, and dares to step out of my comfort zone to try new things.
                 </p>
                 <p>
-                    Keberanian merantau ke Bandung demi pendidikan yang saya impikan menjadi bukti komitmen saya. Saya tidak membatasi diri, menempatkan diri dengan fleksibel di mana pun saya berada. Dengan sikap multi-talenta, semangat belajar, dan keterbukaan terhadap peluang baru, saya siap memberikan kontribusi positif dalam dunia perkantoran profesional.
+                    The courage to migrate to Bandung for the education I dreamed of is proof of my commitment. I do not limit myself to the major I took, but position myself flexibly wherever I am. With a multi-talented attitude, passion for learning, and openness to new opportunities, I am ready to make positive contributions to the professional office world.
                 </p>
                 <a href="#contact" class="btn-contact">Hire Me</a>
             </div>
@@ -744,15 +945,15 @@
                 <article class="edu-card">
                     <span class="edu-year">2019 - 2022</span>
                     <h3 class="edu-school">SMK Telkom 2 Medan</h3>
-                    <p class="edu-desc">Jurusan Tata Boga & Kuliner. Memutuskan melanjutkan pendidikan di SMK karena ketertarikan dalam industri kuliner dan perhotelan. Menamatkan pendidikan sebagai lulusan berprestasi di angkatan.</p>
-                    <span class="edu-highlight">Prestasi: Sponsor Beasiswa Kuliah</span>
+                    <p class="edu-desc">Culinary & Pastry Major. Decided to continue my education at Vocational School due to my interest in the culinary and hospitality industry. Graduated as a high-achieving student in the batch.</p>
+                    <span class="edu-highlight">Achievement: College Scholarship Sponsor</span>
                 </article>
 
                 <!-- Entry 2: University -->
                 <article class="edu-card">
                     <span class="edu-year">2022 - 2025</span>
                     <h3 class="edu-school">Telkom University</h3>
-                    <p class="edu-desc">D3 Perhotelan. Aktif mengikuti berbagai kegiatan kepanitiaan dan pernah menjabat sebagai Ketua HIMA Prodi D3 Perhotelan (2023). Komitmen tinggi terhadap pendidikan dan organisasi.</p>
+                    <p class="edu-desc">D3 Hospitality. Actively participated in various committee activities and served as Head of the D3 Hospitality Student Association (2023). High commitment to education and organization.</p>
                     <span class="edu-highlight">CGPA 3.99/4.00 (CUM LAUDE)</span>
                 </article>
             </div>
@@ -765,24 +966,34 @@
         <div class="achievements-grid">
             <div class="achievement-card">
                 <i class="fas fa-crown achievement-icon"></i>
-                <p class="achievement-text">Ketua HIMA Prodi Perhotelan 2023-2024</p>
+                <p class="achievement-text">Head of Hotel Management Student Association 2023-2024</p>
             </div>
             <div class="achievement-card">
                 <i class="fas fa-medal achievement-icon"></i>
-                <p class="achievement-text">Peraih Medali Emas Olimpiade Bhs Inggris Sains Akbar Nasional 2024</p>
+                <p class="achievement-text">Gold Medal English Olympiad National 2024</p>
+            </div>
+            <!-- NEW ACHIEVEMENT 1 -->
+            <div class="achievement-card">
+                <i class="fas fa-trophy achievement-icon"></i>
+                <p class="achievement-text">1st Place English Olympiad - North Sumatra Province</p>
             </div>
             <div class="achievement-card">
                 <i class="fas fa-graduation-cap achievement-icon"></i>
-                <p class="achievement-text">Penerima Beasiswa Opes 100% Telkom University</p>
+                <p class="achievement-text">Full Scholarship Recipient (Opes) - Telkom University</p>
+            </div>
+            <!-- NEW ACHIEVEMENT 2 -->
+            <div class="achievement-card">
+                <i class="fas fa-flask achievement-icon"></i>
+                <p class="achievement-text">National Indonesian Student Science Competition 2022</p>
             </div>
             <div class="achievement-card">
                 <i class="fas fa-star achievement-icon"></i>
-                <p class="achievement-text">Peringkat Terbaik 10 Seangkatan 2022 di SMK Telkom Medan</p>
+                <p class="achievement-text">Top 10 Best Graduate of the Batch 2022 - SMK Telkom Medan</p>
             </div>
         </div>
     </section>
 
-    <!-- NEW: 3.5 CERTIFICATES SECTION -->
+    <!-- 3.5 CERTIFICATES SECTION -->
     <section id="certificates" class="bg-white">
         <div class="container">
             <h2 class="section-title">Certificates</h2>
@@ -793,7 +1004,7 @@
                         <img src="asset/juara1.jpeg" alt="Certificate 1">
                     </div>
                     <div class="cert-info">
-                        <h4>Certificate Juara 1 Bahasa Inggris Nasional</h4>
+                        <h4>Certificate 1st Place National English Competition</h4>
                         <p>Issued by Lembaga Sertifikasi Profesi - 2024</p>
                     </div>
                 </div>
@@ -803,7 +1014,7 @@
                         <img src="asset/subang.jpeg" alt="Certificate 2">
                     </div>
                     <div class="cert-info">
-                        <h4>Certificate Magang Hotel Dorsett</h4>
+                        <h4>Certificate Hotel Dorsett Internship</h4>
                         <p>Internship Completion - Malaysia 2025</p>
                     </div>
                 </div>
@@ -830,18 +1041,18 @@
                 <!-- Cert 5 -->
                 <div class="cert-card">
                     <div class="cert-img-container">
-                        <img src="asset/marriot.jpeg" alt="Certificate 4">
+                        <img src="asset/marriot.jpeg" alt="Certificate 5">
                     </div>
                     <div class="cert-info">
                         <h4>Certificate JW Marriot InternShip</h4>
-                        <p>Language Proficiency Test - 2022</p>
+                        <p>Proficiency Test - 2021</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. WORK EXPERIENCE SECTION (WITH PROOF IMAGES) -->
+    <!-- 4. WORK EXPERIENCE SECTION -->
     <section id="experience" class="bg-white">
         <div class="container">
             <h2 class="section-title">Work Experience</h2>
@@ -856,13 +1067,13 @@
                         <p class="location">Bandung</p>
                     </div>
                     <div class="exp-content">
-                        <!-- Bukti Kerja Image -->
-                        <img src="asset/surabaya.jpeg" alt="Bukti Kerja Ayam Penyet" class="exp-proof-img">
+                        <!-- Proof Image -->
+                        <img src="asset/surabaya.jpeg" alt="Work Proof Ayam Penyet" class="exp-proof-img">
                         
                         <ul>
-                            <li>Bekerja kontrak selama 6 bulan dengan penuh tanggung jawab.</li>
-                            <li>Menangani promosi dan interaksi langsung dengan pelanggan.</li>
-                            <li>Membantu operasional pemasaran restoran secara efektif.</li>
+                            <li>Worked on a contract for 6 months with full responsibility.</li>
+                            <li>Handled promotions and direct interaction with customers.</li>
+                            <li>Assisted in effective restaurant marketing operations.</li>
                         </ul>
                     </div>
                 </article>
@@ -876,13 +1087,13 @@
                         <p class="location">Selangor, Malaysia</p>
                     </div>
                     <div class="exp-content">
-                        <!-- Bukti Kerja Image -->
-                        <img src="asset/subangft.jpeg" alt="Bukti Kerja Dorsett" class="exp-proof-img">
+                        <!-- Proof Image -->
+                        <img src="asset/subangft.jpeg" alt="Work Proof Dorsett" class="exp-proof-img">
 
                         <ul>
-                            <li>Melaksanakan magang internasional selama 6 bulan di departemen Finance.</li>
-                            <li>Terlibat dalam penanganan Account Receivable dan verifikasi data keuangan.</li>
-                            <li>Membantu proses administrasi keuangan hotel bintang 5.</li>
+                            <li>Conducted an international internship for 6 months in the Finance department.</li>
+                            <li>Involved in handling Account Receivable and financial data verification.</li>
+                            <li>Assisted in the financial administration processes of a 5-star hotel.</li>
                         </ul>
                     </div>
                 </article>
@@ -896,13 +1107,13 @@
                         <p class="location">Telkom University</p>
                     </div>
                     <div class="exp-content">
-                        <!-- Bukti Kerja Image -->
-                        <img src="asset/asisten.jpeg" alt="Bukti Kerja Asisten" class="exp-proof-img">
+                        <!-- Proof Image -->
+                        <img src="asset/asisten.jpeg" alt="Work Proof Assistant" class="exp-proof-img">
 
                         <ul>
-                            <li>Menjadi asisten praktikum umum untuk mahasiswa semester 3.</li>
-                            <li>Mengajar materi Bahasa Inggris Front Office di bawah prodi D3 Perhotelan.</li>
-                            <li>Membimbing mahasiswa dalam kemampuan komunikasi profesional.</li>
+                            <li>Served as a general teaching assistant for 3rd-semester students.</li>
+                            <li>Taught Front Office English materials under the D3 Hospitality study program.</li>
+                            <li>Mentored students in professional communication skills.</li>
                         </ul>
                     </div>
                 </article>
@@ -916,13 +1127,13 @@
                         <p class="location">Medan</p>
                     </div>
                     <div class="exp-content">
-                        <!-- Bukti Kerja Image -->
-                        <img src="asset/jofie.PNG" alt="Bukti Kerja Jofie" class="exp-proof-img">
+                        <!-- Proof Image -->
+                        <img src="asset/jofie.PNG" alt="Work Proof Jofie" class="exp-proof-img">
 
                         <ul>
-                            <li>Bekerja kontrak selama beberapa bulan dengan standar ketepatan tinggi.</li>
-                            <li>Membuat kue, pastry, dan cake decoration sesuai order.</li>
-                            <li>Mempertahankan kualitas produk dan kebersihan area kerja.</li>
+                            <li>Worked on a contract for several months with high precision standards.</li>
+                            <li>Made cakes, pastries, and cake decorations according to orders.</li>
+                            <li>Maintained product quality and workspace cleanliness.</li>
                         </ul>
                     </div>
                 </article>
@@ -936,13 +1147,13 @@
                         <p class="location">Medan</p>
                     </div>
                     <div class="exp-content">
-                        <!-- Bukti Kerja Image -->
-                        <img src="asset/marriotft.jpeg" alt="Bukti Kerja Marriott" class="exp-proof-img">
+                        <!-- Proof Image -->
+                        <img src="asset/marriotft.jpeg" alt="Work Proof Marriott" class="exp-proof-img">
 
                         <ul>
-                            <li>Melaksanakan magang selama 4 bulan di hotel berbintang 5.</li>
-                            <li>Bertugas di Chinese Kitchen dengan standar operasional internasional.</li>
-                            <li>Belajar manajemen waktu, disiplin, dan kerja tim dalam tekanan.</li>
+                            <li>Conducted an internship for 4 months at a 5-star hotel.</li>
+                            <li>Stationed in the Chinese Kitchen with international operational standards.</li>
+                            <li>Learned time management, discipline, and teamwork under pressure.</li>
                         </ul>
                     </div>
                 </article>
@@ -965,7 +1176,7 @@
             </div>
             <div class="doc-item">
                 <img src="https://picsum.photos/seed/campus/800/600" alt="Teaching Assistant">
-                <div class="doc-caption">Asisten Praktikum Prodi D3 Perhotelan (2023)</div>
+                <div class="doc-caption">Teaching Assistant D3 Hospitality (2023)</div>
             </div>
         </div>
     </section>
@@ -978,30 +1189,30 @@
                 <div class="skill-card">
                     <i class="fas fa-user-tie skill-icon"></i>
                     <h4 class="skill-title">Administrative Skills</h4>
-                    <p class="skill-desc">Filling sistematis, data entry akurat, email handling profesional, dan pengaturan jadwal meeting.</p>
+                    <p class="skill-desc">Systematic filing, accurate data entry, professional email handling, and meeting arrangement.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-file-excel skill-icon"></i>
                     <h4 class="skill-title">Microsoft Office</h4>
-                    <p class="skill-desc">Mahir menggunakan Excel (fungsi, tabulasi data), Word untuk dokumen resmi, dan PowerPoint untuk presentasi.</p>
+                    <p class="skill-desc">Proficient in Excel (functions, data tabulation), Word for official documents, and PowerPoint for presentations.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-comments skill-icon"></i>
                     <h4 class="skill-title">Communication</h4>
-                    <p class="skill-desc">Kemampuan Public Speaking yang kuat, presentasi profesional, dan komunikasi bisnis yang efektif.</p>
+                    <p class="skill-desc">Strong Public Speaking ability, professional presentations, and effective business communication.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-paint-brush skill-icon"></i>
                     <h4 class="skill-title">Editing & Design</h4>
-                    <p class="skill-desc">Mampu mengedit dan merancang poster, brosur, name tag, dan materi promosi lainnya.</p>
+                    <p class="skill-desc">Capable of editing and designing posters, brochures, name tags, and other promotional materials.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. PROJECT / PORTFOLIO SECTION -->
+    <!-- 7. PROJECT / PORTFOLIO SECTION (Linked to new Navbar) -->
     <section id="projects" class="container">
-        <h2 class="section-title">Project / Portfolio</h2>
+        <h2 class="section-title">Portfolio</h2>
         <div class="project-grid">
             <!-- Project 1 -->
             <div class="project-card">
@@ -1011,7 +1222,7 @@
                 <div class="project-info">
                     <span class="project-badge">I Made This</span>
                     <h4>Event Poster & Brochure</h4>
-                    <p>Desain poster dan brosur untuk kegiatan kampus dan promosi hotel. Fokus pada estetika visual dan efektivitas pesan.</p>
+                    <p>Design of posters and brochures for campus activities and hotel promotions. Focused on visual aesthetics and message effectiveness.</p>
                 </div>
             </div>
             <!-- Project 2 -->
@@ -1022,7 +1233,7 @@
                 <div class="project-info">
                     <span class="project-badge">I Did This</span>
                     <h4>Administrative Billing</h4>
-                    <p>Pembuatan template invoice billing dan surat tagihan klien yang rapi, profesional, dan mudah dipahami.</p>
+                    <p>Creation of invoice billing templates and client billing letters that are neat, professional, and easy to understand.</p>
                 </div>
             </div>
             <!-- Project 3 -->
@@ -1033,28 +1244,28 @@
                 <div class="project-info">
                     <span class="project-badge">I Did This</span>
                     <h4>Financial Computation</h4>
-                    <p>Laporan kerja dan perhitungan tagihan tamu hotel serta review komputasi keuangan bulanan.</p>
+                    <p>Work reports and guest hotel bill calculations as well as monthly financial computation reviews.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. TASKS I HANDLE / OFFICE RESPONSIBILITIES -->
+    <!-- 8. TASKS I HANDLE SECTION -->
     <section id="tasks" class="bg-white">
         <div class="container">
             <h2 class="section-title">Tasks I Handle</h2>
             <div class="tasks-grid">
                 <div class="task-card">
                     <i class="fas fa-envelope-open-text task-icon"></i>
-                    <span class="task-text">Mengirim surat tagihan kepada klien</span>
+                    <span class="task-text">Sending billing letters to clients</span>
                 </div>
                 <div class="task-card">
                     <i class="fas fa-file-invoice-dollar task-icon"></i>
-                    <span class="task-text">Melakukan billing pada invoice</span>
+                    <span class="task-text">Processing billing on invoices</span>
                 </div>
                 <div class="task-card">
                     <i class="fas fa-calculator task-icon"></i>
-                    <span class="task-text">Menghitung tagihan bill tamu hotel</span>
+                    <span class="task-text">Calculating guest hotel bills</span>
                 </div>
                 <div class="task-card">
                     <i class="fas fa-check-double task-icon"></i>
@@ -1068,7 +1279,7 @@
     <section id="contact" class="container">
         <div class="contact-container">
             <h2>Contact Me</h2>
-            <p>Siap untuk berdiskusi mengenai peluang kerja sama dan kontribusi profesional.</p>
+            <p>Ready to discuss opportunities for collaboration and professional contributions.</p>
             
             <div class="contact-details">
                 <div class="contact-item">
@@ -1084,7 +1295,7 @@
                 <div class="contact-item">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
-                    <a href="#">Mutiara Desinski</a>
+                    <a href="https://www.linkedin.com/in/mutiara-desinski-112585227?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">Mutiara Desinski</a>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-instagram"></i>
