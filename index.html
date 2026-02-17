@@ -73,7 +73,7 @@
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
-            padding: 1 40px;
+            padding: 1 40px; /* Desktop Padding */
         }
 
         section {
@@ -553,22 +553,23 @@
 
         .doc-caption {
             position: absolute;
-            bottom: 1px;
+            bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(84, 30, 41, 0.95));
+            background: rgba(84, 30, 41, 0.85); /* Solid dark background */
             color: white;
             padding: 1rem;
             font-size: 0.9rem;
             font-weight: 500;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            opacity: 0.9;
+            /* FIX: Removed translateY(20px) so it stays in place */
+            transform: translateY(0); 
+            opacity: 1; /* Always visible */
+            transition: all 0.3s ease;
         }
 
         .doc-item:hover .doc-caption {
-            transform: translateY(0);
-            opacity: 1;
+            background: rgba(84, 30, 41, 1); /* Darker on hover */
+            padding-bottom: 1.2rem; /* Slight movement effect */
         }
 
         /* --- 6. PERSONAL SKILLS SECTION --- */
@@ -837,6 +838,15 @@
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
+            /* FIX: Reduced padding to prevent cramping */
+            .container {
+                padding: 0 20px; 
+            }
+
+            section {
+                padding: 3rem 0; /* Reduced vertical spacing for mobile */
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -863,6 +873,7 @@
                 text-align: center;
                 padding-top: 4rem;
                 gap: 2rem;
+                min-height: auto; /* Allow content to define height */
             }
             
             .hero-text h1 {
@@ -870,6 +881,10 @@
             }
             .hero-text h1:hover {
                 transform: none;
+            }
+
+            .hero-text p {
+                text-align: left; /* Left align on mobile is easier to read */
             }
 
             .hero-image img {
@@ -881,12 +896,27 @@
                 box-shadow: 10px 10px 0 var(--primary-color);
             }
 
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
             .exp-card {
                 grid-template-columns: 1fr;
+                padding: 1.5rem; /* Less padding inside cards on mobile */
+                gap: 1.5rem;
             }
             
             .exp-proof-img {
                 height: 150px;
+            }
+
+            .education-grid, .cert-grid, .skills-grid, .project-grid, .achievements-grid, .tasks-grid {
+                gap: 1rem; /* Tighter grid gaps on mobile */
+            }
+
+            .cert-card, .edu-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -907,7 +937,7 @@
                     <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#certificates">Certificates</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Portfolio</a></li> <!-- NEW LINK -->
+                    <li><a href="#projects">Portfolio</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1210,7 +1240,7 @@
         </div>
     </section>
 
-    <!-- 7. PROJECT / PORTFOLIO SECTION (Linked to new Navbar) -->
+    <!-- 7. PROJECT / PORTFOLIO SECTION -->
     <section id="projects" class="container">
         <h2 class="section-title">Portfolio</h2>
         <div class="project-grid">
